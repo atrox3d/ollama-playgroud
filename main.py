@@ -19,7 +19,7 @@ class Answer(pydantic.BaseModel):
 @app.command()
 def main(
     prompt:str,
-    localhost:bool=False,
+    localhost:bool=True,
     host:str=defaults.REMOTEHOST,
     stop:bool=True
 ):
