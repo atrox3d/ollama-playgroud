@@ -25,7 +25,7 @@ def main(
 ):
     try:
         with OllamaServerCtx(
-                    host=host if not localhost else None,
+                    host=host if not localhost else defaults.HOST,
                     stop=stop
             ):
             client = ollama.Client(host)
