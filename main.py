@@ -62,6 +62,7 @@ def main(
                 # }
                 format=Answer.model_json_schema()
             )
+            print(Answer.model_validate_json(response.message.content))
             print(response.message.content)
     except TimeoutError as tme:
         print(f'FATAL| {tme}')
