@@ -18,6 +18,10 @@ def get_server(host:str, port:str) -> str:
     return f'{host}:{port}'
 
 
+def get_url(host:str, port:str) -> str:
+    return f'http://{get_server(host, port)}'
+
+
 def wait_for_server(host, port, wait, max_attempts):
     '''Wait for the server to be ready'''
     server = get_server(host, port)
