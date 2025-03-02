@@ -19,16 +19,22 @@ class Answer(pydantic.BaseModel):
 @app.command()
 def main(
     prompt:str,
-    localhost:bool=True,
-    host:str=defaults.REMOTEHOST,
+    remote:bool=False,
+    host:str=None,
     stop:bool=True
 ):
     try:
+
+        server = defaults.HOST if not remote else host or defaults.REMOTEHOST
+        stop = stop if not remote else False
+        
+        print(f'server: {server}')
+        
         with OllamaServerCtx(
-                    host=host if not localhost else defaults.HOST,
+                    host=server,
                     stop=stop
             ):
-            client = ollama.Client(host)
+            client = ollama.Client(server)
             response = client.chat(
                 model='llama3.2',
                 messages=[
